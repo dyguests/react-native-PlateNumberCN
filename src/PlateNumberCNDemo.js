@@ -24,6 +24,7 @@ export default class PlateNumberCNDemo extends Component {
                     <Text>Show PlateNumPicker</Text>
                 </TouchableHighlight>
                 <PlatNumPicker
+                    modalVisible={true}
                     onPlateNumberSelected={(city, letter)=> {
                         {/*alert(`${city}, ${letter}`);*/
                         }

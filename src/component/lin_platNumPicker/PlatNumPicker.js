@@ -10,16 +10,22 @@ import {
     View,
     Text,
     TouchableOpacity,
+    // Modal,
 } from 'react-native';
 
 export default class PlatNumPicker extends Component {
     static propTypes = {
         // autoPlay: React.PropTypes.bool.isRequired,
-        // maxLoops: React.PropTypes.number.isRequired,
+        modalVisible: React.PropTypes.bool,
         /**
          * (city,letter)=>{}
          */
         onPlateNumberSelected: React.PropTypes.func.isRequired,
+    };
+
+    static defaultProps = {
+        // autoPlay: false,
+        modalVisible: false,
     };
 
     city = ["川", "陕", "贵", "粤", "京", "沪", "津", "渝", "宁", "琼", "皖",
@@ -133,7 +139,9 @@ const styles = StyleSheet.create({
     container: {
         // flex: 1,
         justifyContent: 'center',
+        // justifyContent: 'flex-end',
         alignItems: 'center',
+        // alignItems: 'flex-end',
         backgroundColor: '#B6B6B6',
     },
     line: {

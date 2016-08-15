@@ -7,35 +7,75 @@ import {
     StyleSheet,
     View,
     Text,
-    Modal,
     TouchableHighlight,
+    Modal,
+    TouchableOpacity,
+    TouchableWithoutFeedback,
 } from 'react-native';
 import PlatNumPicker from './component/lin_platNumPicker/PlatNumPicker';
+// const Modal = require('react-native-modalbox');
 
 export default class PlateNumberCNDemo extends Component {
-
+// 构造
+    constructor(props) {
+        super(props);
+        // 初始状态
+        this.state = {
+            isShowPlatNumPicker: false,
+        };
+    }
 
     render() {
         return (
             <View style={{marginTop: 22}}>
-                <TouchableHighlight onPress={() => {
-                    this.showPlatNumPicker(true)
-                }}>
+                <TouchableHighlight onPress={this.showPlatNumPicker}>
                     <Text>Show PlateNumPicker</Text>
                 </TouchableHighlight>
-                <PlatNumPicker
-                    modalVisible={true}
-                    onPlateNumberSelected={(city, letter)=> {
-                        {/*alert(`${city}, ${letter}`);*/
-                        }
-                    }}
-                />
+                <Modal
+                    visible={this.state.isShowPlatNumPicker}
+                    transparent={true}
+                    animationType='slide'
+                >
+                    <View style={{
+                        flex: 1,
+                        //justifyContent: 'center',
+                        justifyContent: 'center',
+                        alignItems: 'stretch'
+                    }}>
+                        <TouchableOpacity
+                            style={{
+                                flex: 1,
+                                //backgroundColor: 'red',
+                                justifyContent: 'center',
+                            }}
+                            onPress={()=> {
+                                //alert(3);
+                                this.setState({
+                                    isShowPlatNumPicker: false,
+                                });
+                            }}
+                        >
+                            <View/>
+                        </TouchableOpacity>
+                        <PlatNumPicker
+                            modalVisible={true}
+                            onPlateNumberSelected={(city, letter)=> {
+                                this.setState({
+                                    isShowPlatNumPicker: false,
+                                });
+                                alert(`${city},${letter}`)
+                            }}
+                        />
+                    </View>
+                </Modal>
             </View>
         );
     }
 
     showPlatNumPicker = ()=> {
-
+        this.setState({
+            isShowPlatNumPicker: true,
+        });
     };
 }
 
@@ -50,5 +90,13 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'center',
         margin: 10,
+    },
+
+    modal: {
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    modal4: {
+        height: 300,
     },
 });

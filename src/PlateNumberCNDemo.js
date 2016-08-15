@@ -10,6 +10,7 @@ import {
     Modal,
     TouchableHighlight,
 } from 'react-native';
+import PlatNumPicker from './component/lin_platNumPicker/PlatNumPicker';
 
 export default class PlateNumberCNDemo extends Component {
 
@@ -52,7 +53,7 @@ export default class PlateNumberCNDemo extends Component {
                 }}>
                     <Text>Show Modal</Text>
                 </TouchableHighlight>
-
+                <PlatNumPicker/>
             </View>
         );
     }

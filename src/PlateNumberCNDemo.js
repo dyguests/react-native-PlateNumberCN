@@ -53,7 +53,11 @@ export default class PlateNumberCNDemo extends Component {
                 }}>
                     <Text>Show Modal</Text>
                 </TouchableHighlight>
-                <PlatNumPicker/>
+                <PlatNumPicker
+                    onPlateNumberSelected={(city, letter)=> {
+                        {/*alert(`${city}, ${letter}`);*/}
+                    }}
+                />
             </View>
         );
     }

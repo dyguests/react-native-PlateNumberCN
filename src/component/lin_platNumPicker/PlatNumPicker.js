@@ -13,6 +13,15 @@ import {
 } from 'react-native';
 
 export default class PlatNumPicker extends Component {
+    static propTypes = {
+        // autoPlay: React.PropTypes.bool.isRequired,
+        // maxLoops: React.PropTypes.number.isRequired,
+        /**
+         * (city,letter)=>{}
+         */
+        onPlateNumberSelected: React.PropTypes.func.isRequired,
+    };
+
     city = ["川", "陕", "贵", "粤", "京", "沪", "津", "渝", "宁", "琼", "皖",
         "冀", "豫", "云", "辽", "黑", "湘", "鲁", "新", "苏", "浙", "赣", "鄂", "桂", "甘",
         "晋", "蒙", "吉", "闽", "青", "藏"];
@@ -26,6 +35,7 @@ export default class PlatNumPicker extends Component {
         // 初始状态
         this.state = {
             selectStep: 'city',//'city','letter',
+            selectedCity: undefined,
         };
     }
 
@@ -100,17 +110,21 @@ export default class PlatNumPicker extends Component {
 
         let {
             selectStep,
+            selectedCity,
         }=this.state;
+
+        let {
+            onPlateNumberSelected,
+        }=this.props;
 
         let list;
         if (selectStep == 'city') {
             this.setState({
                 selectStep: 'letter',
+                selectedCity: item,
             });
         } else {
-            this.setState({
-                selectStep: 'city',
-            });
+            onPlateNumberSelected && onPlateNumberSelected(selectedCity, item);
         }
     };
 }

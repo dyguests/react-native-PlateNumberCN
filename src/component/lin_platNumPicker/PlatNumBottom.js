@@ -77,6 +77,20 @@ export default class PlatNumBottom extends Component {
             </Modal>
         );
     }
+
+    componentWillReceiveProps = (nextProps)=> {
+        // console.log('PlatNumBottom componentWillReceiveProps = (nextProps)=> {');
+        // console.log(nextProps);
+
+        let {
+            visible
+        }=nextProps;
+
+        // 初始状态
+        this.setState({
+            visible: visible ? visible : this.state.visible,
+        });
+    };
 }
 
 const styles = StyleSheet.create({

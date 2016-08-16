@@ -32,10 +32,12 @@ export default class PlatNumBottom extends Component {
         let {
             visible,
         }=this.props;
+
         // 初始状态
         this.state = {
             visible,
         };
+
     }
 
     render() {
@@ -44,6 +46,7 @@ export default class PlatNumBottom extends Component {
             outTouchProcess,
             selectedProcess,
         }=this.props;
+
         return (
             <Modal
                 visible={visible}

@@ -11,6 +11,7 @@ import {
     Text,
     TouchableOpacity,
     // Modal,
+    Dimensions,
 } from 'react-native';
 
 export default class PlatNumPicker extends Component {
@@ -43,6 +44,10 @@ export default class PlatNumPicker extends Component {
             selectStep: 'city',//'city','letter',
             selectedCity: undefined,
         };
+
+
+        let {width} = Dimensions.get('window');
+        this.cellHeight = width / 8 * 1.2;
     }
 
     render() {
@@ -90,7 +95,7 @@ export default class PlatNumPicker extends Component {
         return (
             <View
                 key={lineList.toString()}
-                style={styles.line}
+                style={[styles.line, {height: this.cellHeight}]}
             >
                 {itemsUI}
             </View>

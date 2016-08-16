@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import PlatNumPicker from './component/lin_platNumPicker/PlatNumPicker';
 // const Modal = require('react-native-modalbox');
+import PlatNumBottom from './component/lin_platNumPicker/PlatNumBottom';
 
 export default class PlateNumberCNDemo extends Component {
 // 构造
@@ -31,43 +32,20 @@ export default class PlateNumberCNDemo extends Component {
                 <TouchableHighlight onPress={this.showPlatNumPicker}>
                     <Text>Show PlateNumPicker</Text>
                 </TouchableHighlight>
-                <Modal
+                <PlatNumBottom
                     visible={this.state.isShowPlatNumPicker}
-                    transparent={true}
-                    animationType='slide'
-                >
-                    <View style={{
-                        flex: 1,
-                        //justifyContent: 'center',
-                        justifyContent: 'center',
-                        alignItems: 'stretch'
-                    }}>
-                        <TouchableOpacity
-                            style={{
-                                flex: 1,
-                                //backgroundColor: 'red',
-                                justifyContent: 'center',
-                            }}
-                            onPress={()=> {
-                                //alert(3);
-                                this.setState({
-                                    isShowPlatNumPicker: false,
-                                });
-                            }}
-                        >
-                            <View/>
-                        </TouchableOpacity>
-                        <PlatNumPicker
-                            modalVisible={true}
-                            onPlateNumberSelected={(city, letter)=> {
-                                this.setState({
-                                    isShowPlatNumPicker: false,
-                                });
-                                alert(`${city},${letter}`)
-                            }}
-                        />
-                    </View>
-                </Modal>
+                    outTouchProcess={()=> {
+                        this.setState({
+                            isShowPlatNumPicker: false,
+                        });
+                    }}
+                    selectedProcess={(city, letter)=> {
+                        this.setState({
+                            isShowPlatNumPicker: false,
+                        });
+                        alert(`${city},${letter}`)
+                    }}
+                />
             </View>
         );
     }

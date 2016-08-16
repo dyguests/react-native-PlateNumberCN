@@ -56,9 +56,6 @@ export default class PlatNumBottom extends Component {
                         onPress={()=> {
                             //alert(3);
                             outTouchProcess && outTouchProcess();
-                            this.setState({
-                                visible: false,
-                            });
                         }}
                     >
                         <View/>
@@ -66,9 +63,6 @@ export default class PlatNumBottom extends Component {
                     <PlatNumPicker
                         modalVisible={true}
                         onPlateNumberSelected={(city, letter)=> {
-                            this.setState({
-                                visible: false,
-                            });
                             //alert(`${city},${letter}`)
                             selectedProcess && selectedProcess(city, letter);
                         }}

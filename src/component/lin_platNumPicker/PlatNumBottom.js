@@ -9,14 +9,72 @@ import {
     StyleSheet,
     View,
     Text,
+    Modal,
+    TouchableOpacity,
 } from 'react-native';
+import PlatNumPicker from './PlatNumPicker';
 
 export default class PlatNumBottom extends Component {
+    static defaultProps = {
+        text: false,
+    };
+
+    static propTypes = {
+        visible: React.PropTypes.bool,
+        outTouchProcess: React.PropTypes.func.isRequired,
+        selectedProcess: React.PropTypes.func.isRequired,
+    };
+
+    // 构造
+    constructor(props) {
+        super(props);
+
+        let {
+            visible,
+        }=this.props;
+        // 初始状态
+        this.state = {
+            visible,
+        };
+    }
+
     render() {
+        let {
+            visible,
+            outTouchProcess,
+            selectedProcess,
+        }=this.props;
         return (
-            <View style={styles.container}>
-                <Text style={styles.welcome}>Hello React Native</Text>
-            </View>
+            <Modal
+                visible={visible}
+                transparent={true}
+                animationType='slide'
+            >
+                <View style={styles.container}>
+                    <TouchableOpacity
+                        style={styles.outside}
+                        onPress={()=> {
+                            //alert(3);
+                            outTouchProcess && outTouchProcess();
+                            this.setState({
+                                visible: false,
+                            });
+                        }}
+                    >
+                        <View/>
+                    </TouchableOpacity>
+                    <PlatNumPicker
+                        modalVisible={true}
+                        onPlateNumberSelected={(city, letter)=> {
+                            this.setState({
+                                visible: false,
+                            });
+                            //alert(`${city},${letter}`)
+                            selectedProcess && selectedProcess(city, letter);
+                        }}
+                    />
+                </View>
+            </Modal>
         );
     }
 }
@@ -24,13 +82,13 @@ export default class PlatNumBottom extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        //justifyContent: 'center',
         justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        alignItems: 'stretch'
     },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
+    outside: {
+        flex: 1,
+        //backgroundColor: 'red',
+        justifyContent: 'center',
     },
 });
